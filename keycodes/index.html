@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <title>Keycode Generator</title>
+  </head>
+  <body onkeydown="show(event)">
+    <div id="message">
+      <h2>
+        Press any key to get the javascript event keycode
+      </h2>
+    </div>
+    <div id="wrapper">
+      <h1 id="header">
+        null
+      </h1>
+      <div class="containers">
+        <p class="labels">
+          event.key
+        </p>
+        <p class="keys" id="key">
+          null
+        </p>
+      </div>
+      <div class="containers">
+        <p class="labels">
+          event.location
+        </p>
+        <p class="keys" id="location">
+          null
+        </p>
+      </div>
+      <div class="containers">
+        <p class="labels">
+          event.which
+        </p>
+        <p class="keys" id="which">
+          null
+        </p>
+      </div>
+      <div class="containers">
+        <p class="labels">
+          event.code
+        </p>
+        <p class="keys" id="code">
+          null
+        </p>
+      </div>
+    </div>
+  </body>
+  <style>
+    body {
+      background-color: #000000;
+    }
+    * {
+      font-family: monospace;
+      text-align: center;
+      color: #ffffff;
+    }
+    h1 {
+      font-size: 150px;
+      font-weight: 900;
+    }
+    h2 {
+      font-size: 20;
+      text-align: center;
+    }
+    .labels {
+      font-weight: 550;
+      font-size: 15px;
+    }
+    .keys {
+      font-size: 45px;
+      font-weight: 700;
+    }
+    .containers {
+      display: inline-block;
+      vertical-align: text-top;
+      width: 20%;
+      height: 150px;
+      background-color: #383838;
+    }
+    #wrapper {
+      display:none;
+    }
+  </style>
+  <script>
+    var message = document.querySelector('#message');
+    var key = document.querySelector('#key');
+    var loc = document.querySelector('#location');
+    var which = document.querySelector('#which');
+    var code = document.querySelector('#code');
+    var header = document.querySelector('#header');
+    var wrap = document.querySelector('#wrapper');
+    function show(e){
+      wrap.style.display = 'block';
+      wrap.style.width = window.innerWidth;
+      wrap.style.height = window.innerHeight;
+      document.body.style.margin = 0;
+      e.preventDefault();
+      message.remove();
+      key.innerHTML = e.key;
+      loc.innerHTML = e.location;
+      which.innerHTML = e.which;
+      code.innerHTML = e.code;
+      header.innerHTML = e.which;
+    }
+  </script>
+</html>
