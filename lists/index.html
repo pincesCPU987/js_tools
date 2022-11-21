@@ -1,0 +1,21 @@
+<p>
+  Create Javascript List from Scratch List!
+</p>
+<input type="file" accept="text/plain" id="files">
+<textarea id="txt"></textarea>
+<script>
+	var txt = document.querySelector('#txt');
+  var files = document.querySelector('#files');
+  files.addEventListener('change',function(e){
+  	var fr = new FileReader();
+    fr.onload = function(e){
+    	var text = e.target.result;
+      text = text.split('\n').join(',').split(',');
+      for(var i = 0; i < text.length; i++){
+      	text[i] = '"' + text[i].trim() + '"';
+      }
+      txt.value = '[' + text.join(',') + ']';
+    }
+    fr.readAsText(e.target.files[0])
+  });
+</script>
