@@ -26,8 +26,46 @@
     </select>
     <input type="button" id="convert" value="Convert">
     <br>
-    <label for="file"><u>Choose file to generate URI</u></label>
+    <label for="file">Choose file to generate URI</label>
     <input type="file" id="file" style="display:none">
+    <label for="url">Generate text from url</label>
+    <input type="button" id="url" style="display:none">
+    <style>
+      * {
+        font-family:sans-serif;
+        font-weight:100;
+        font-size:14px;
+      }
+      label, input, select {
+        display:inline-block;
+        border-left:1px solid #666;
+        border-top:1px solid #666;
+        border-right:1px solid #aaa;
+        border-bottom:1px solid #aaa;
+        padding-left:6px;
+        padding-right:6px;
+        padding-top:2px;
+        padding-bottom:2px;
+        margin-top:0px;
+        margin-bottom:0px;
+        background-color:#ddd;
+        border-radius:2.5px;
+      }
+      label:hover, input:hover, select:hover {
+        background-color:#eee;
+      }
+      option {
+        background-color:#ddd;
+      }
+      textarea {
+        border-radius:2.5px;
+        border-left:1px solid #666;
+        border-top:1px solid #666;
+        border-right:1px solid #aaa;
+        border-bottom:1px solid #aaa;
+        font-family:monospace;
+      }
+    </style>
     <script>
     	const digit="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
       toB64=x=>x.toString(2).split(/(?=(?:.{6})+(?!.))/g).map(v=>digit[parseInt(v,2)]).join("")
@@ -277,6 +315,21 @@
         }
         reader.readAsDataURL(e.target.files[0])
       });
+      const isValidUrl = urlString=> {
+        try { 
+          return Boolean(new URL(urlString)); 
+        }
+        catch(e){ 
+          return false; 
+        }
+      }
+      document.querySelector('#url').addEventListener('click',function(e){
+      	if(isValidUrl(textarea.value)) {
+        	fetch(textarea.value).then(response => response.text()).then((response) => {output.value = response}).catch(err => output.value = 'URL Error (probably doesn\'t exist)')
+        } else {
+        	output.value = "URL Error (probably doesn't exist)";
+        }
+      })
     </script>
   </body>
 </html>
