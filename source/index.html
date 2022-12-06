@@ -1,0 +1,12 @@
+<html>
+  <head>
+    <title>Source Viewer!</title>
+  </head>
+  <body>
+    <script>
+    	const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      document.write(urlParams.get('url'));
+    </script>
+  </body>
+</html>
