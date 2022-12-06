@@ -6,7 +6,7 @@
     <script>
     	const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      fetch("URL").then(response => response.text()).then((response) => {document.write(response)})
+      fetch(urlParams.get('url')).then(response => response.text()).then((response) => {document.write(response)})
    .catch(err => console.log(err))
     </script>
   </body>
