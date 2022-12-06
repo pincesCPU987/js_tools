@@ -3,10 +3,11 @@
     <title>Source Viewer!</title>
   </head>
   <body>
+    <textarea id="output"><textarea>
     <script>
     	const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      fetch(urlParams.get('url')).then(response => response.text()).then((response) => {document.write(response)})
+      fetch(urlParams.get('url')).then(response => response.text()).then((response) => {document.querySelector('#output').value = (response)})
    .catch(err => console.log(err))
     </script>
   </body>
