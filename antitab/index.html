@@ -1,0 +1,9 @@
+<textarea id="output"></textarea>
+
+<script>
+  var txt = document.querySelector('#output');
+  
+  txt.addEventListener('input', function(e){
+    txt.value = txt.value.split('\t').join('  ');
+  });
+</script>
